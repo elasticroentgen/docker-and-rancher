@@ -1,7 +1,7 @@
 FROM docker:17.03.0
 
-ARG compose_version=1.18.0
-ENV RANCHER_COMPOSE_VERSION=v0.10.0
+ARG compose_version=1.22.0
+ENV RANCHER_COMPOSE_VERSION=v0.12.5
 
 # Install docker-compose (extra complicated since the base image uses alpine as base)
 RUN apk update && apk add --no-cache \
