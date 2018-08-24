@@ -2,7 +2,7 @@ FROM docker:stable
 
 ARG compose_version=1.22.0
 ENV RANCHER_COMPOSE_VERSION=v0.12.5
-ENV RANCHER_CLI_VERSION=v2.0.4
+ENV RANCHER_CLI_VERSION=v0.6.11
 
 # Install docker-compose (extra complicated since the base image uses alpine as base)
 RUN apk update && apk add --no-cache \
