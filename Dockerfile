@@ -2,6 +2,7 @@ FROM docker:stable
 
 ARG compose_version=1.22.0
 ENV RANCHER_COMPOSE_VERSION=v0.12.5
+ENV RANCHER_CLI_VERSION=v2.0.4
 
 # Install docker-compose (extra complicated since the base image uses alpine as base)
 RUN apk update && apk add --no-cache \
@@ -21,3 +22,12 @@ RUN apk upgrade --update && \
     rm /tmp/rc.tar.gz && \
     chmod +x /usr/local/bin/rancher-compose && \
     apk del curl
+
+RUN apk upgrade --update && \
+    apk add --update ca-certificates curl tar xz && \
+    curl -jksSL -o /tmp/rcli.tar.gz https://github.com/rancher/cli/releases/download/${RANCHER_CLI_VERSION}/rancher-linux-amd64-${RANCHER_CLI_VERSION}.tar.gz && \
+    tar -xzf /tmp/rcli.tar.gz -C /usr/local/bin --strip-components=2 && \
+    rm /tmp/rcli.tar.gz && \
+    chmod +x /usr/local/bin/rancher && \
+    apk del curl
+
